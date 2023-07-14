@@ -10,143 +10,134 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/styles.css" />
     <title>My Weather</title>
   </head>
 
   <body>
     <div class="container">
-      <div class="weather-app">
+        <div class="weather-app">
             <form class="search-form" id="search-form">
-            <div class="row">
-                <div class="col-9">
-                <input
-                    type="search"
-                    placeholder="Type a city.."
-                    autofocus="on"
-                    autocomplete="off"
-                    id="city-input"
-                    class="form-control shadow-sm"
-                />
+                <div class="row">
+                    <div class="col-6">
+                        <input
+                            type="search"
+                            placeholder="Type a city.."
+                            autofocus="on"
+                            autocomplete="off"
+                            id="city-input"
+                            class="form-control shadow-sm"
+                        />
+                    </div>
+                    <div class="col-3">
+                        <input
+                            type="submit"
+                            value="Search"
+                            class="form-control btn btn-primary shadow-sm"
+                        />
+                    </div>
+                    <div class="col-3">
+                        <input 
+                        type="submit"
+                        value="Current"
+                        class="btn btn-success w-100"
+                        id="Current-location-button"
+                        />
+                    </div>
                 </div>
-                <div class="col-3">
-                <input
-                    type="submit"
-                    value="Search"
-                    class="form-control btn btn-primary shadow-sm"
-                />
-                </div>
-            </div>
             </form>
             <h1 id="city">
             Lviv, Ukraine
             </h1>
             <ul>
             <li id="date"></li>
-            <li>
-                Partly Cloudy
-            </li>
+            <li id="description">Partly Cloudy</li>
             </ul>
             <div class="row">
             <div class="col-6">
                 <div class="clearfix">
-                <img
-                    src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                    alt="Cloudy icon"
-                    class="weather-icon float-left"
-                />
-                <div class="float-left">
-                    <span class="temperature" id="temperature">19</span
-                    ><span class="units">
-                    <a href="#" id="celsius-link">°C</a> |
-                    <a href="#" id="fahrenheit-link">°F</a>
-                    </span>
-                </div>
+                    <img
+                        src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                        alt="Cloudy icon"
+                        class="weather-icon float-left"
+                    />
+                    <div class="float-left">
+                        <span class="temperature" id="temperature">20</span> 
+                        <span class="units">
+                        <a href="#" id="celsius-link">°C</a> |
+                        <a href="#" id="fahrenheit-link">°F</a>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="col-6">
                 <ul>
                 <li>
-                    Precipitation: 0%
+                    Precipitation: 50%
                 </li>
                 <li>
-                    Humidity: 77%
+                    Humidity: <span id="humidity"></span>%
                 </li>
                 <li>
-                    Wind: 8 km/h
+                    Wind: <span id="Wind"></span>km/h </h>
                 </li>
                 </ul>
             </div>
             
-            <br />
-            <div class="row">
-                <div class="col-2">
-                    <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Today</li>
-                        <li class="list-group-item">
-                        <i class="fa-solid fa-sun" style="color: #fbff0f;"></i>
+            <br>
+            <div class="row" id="futureTemp">
+                <div class="col-3">
+                    <ul>
+                        <li>
+                            Sunday
                         </li>
-                        <li class="list-group-item">18°C/8°C</li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Monday</li>
-                        <li class="list-group-item">
-                        <i class="fa-solid fa-sun" style="color: #fbff0f;"></i>
+                        <li>
+                            25°C/16°C
                         </li>
-                        <li class="list-group-item">20°C/10°C</li>
                     </ul>
-                    </div>
                 </div>
-                <div class="col-2">
-                    <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Tuesday</li>
-                        <li class="list-group-item">
-                        <i
-                            class="fa-solid fa-cloud-showers-heavy"
-                            style="color: #325185;"
-                        ></i>
+                <div class="col-3">
+                    <ul>
+                        <li>
+                            Monday
                         </li>
-                        <li class="list-group-item">19°C/8°C</li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Wednesday</li>
-                        <li class="list-group-item">
-                        <i class="fa-solid fa-sun" style="color: #fbff0f;"></i>
+                        <li>
+                            25°C/16°C
                         </li>
-                        <li class="list-group-item">25°C/12°C</li>
                     </ul>
-                    </div>
                 </div>
-                <div class="col-2">
-                    <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Thursday</li>
-                        <li class="list-group-item">
-                        <i
-                            class="fa-solid fa-cloud-showers-heavy"
-                            style="color: #325185;"
-                        ></i>
+                <div class="col-3">
+                    <ul>
+                        <li>
+                            Tuesday
                         </li>
-                        <li class="list-group-item">24°C/12°C</li>
+                        <li>
+                            25°C/16°C
+                        </li>
                     </ul>
-                    </div>
                 </div>
-            </div> 
+                <div class="col-3">
+                    <ul>
+                        <li>
+                            Wednesday
+                        </li>
+                        <li>
+                            24°C/16°C
+                        </li>
+                    </ul>
+                </div>
+
+                
+            </div>
         </div>
+    </div>  
     
       
 
-    </div>
+    </div class="sourse">
+    <a href="https://github.com/virpol/myWeatherApp"terget="_blank" title="ViraDovhalska WeatherApp">Open-sourse code</a>
+    by Vira Dovhalska
 
     
     <script src="src/index.js"></script>
