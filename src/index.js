@@ -1,3 +1,5 @@
+let currentTemperatureInCurrentCity = 0;
+
 function formatDate(date) {
   let hours = date.getHours();
   if (hours < 10) {
@@ -27,6 +29,8 @@ function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
+  );
+  currentTemperatureInCurrentCity = Math.round(response.data.main.temp
   );
 
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -64,13 +68,13 @@ function getCurrentLocation(event) {
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 66;
+  temperatureElement.innerHTML = Math.round((currentTemperatureInCurrentCity * 9) / 5 + 32);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 19;
+  temperatureElement.innerHTML = currentTemperatureInCurrentCity;
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
