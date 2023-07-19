@@ -8,11 +8,11 @@ body {
     font-size: 24px;
     font-weight: 100;
     line-height: 28px;
-    margin: 0;
+    margin-bottom: 0;
   }
   
   ul {
-    margin: 0 0 10px;
+    margin: 0;
     padding: 0;
   }
   
@@ -24,31 +24,51 @@ body {
     line-height: 1;
     list-style: none;
   }
+
+  li::first-letter {
+    text-transform: capitalize;
+  }
+
+  .weather-app-wrapper {
+    max-width: 600px;
+    margin: 30px auto;
+
+  }
+
   
   .weather-app {
+    
     border: 1px solid #dadde1;
-    padding: 15px;
-    margin: 20px auto 0;
-    border-radius: 10px;
-    max-width: 600px;
+    padding: 20px;
+    border-radius: 5px;
+   
+  }
+  .owerview{
+    margin-bottom: 20px;
   }
   
-  .weather-icon {
-    height: 64px;
-    width: 64px;
-    margin-right: 10px;
+  img {
+    height: 78px;
+    width: 78px;
+    margin-right: 5px;
+    position: relative;
+    top: -10px;
   }
   
-  .temperature {
+  .weather-temperature strong {
     color: rgb(33, 33, 33);
     font-size: 64px;
     font-weight: 400;
-    line-height: 1;
+    line-height: 1px;
+    position: relative;
+    top: 8px;
+
   }
   
   .units {
     position: relative;
-    top: -34px;
+    font-size: 16px;
+    top: -26px;
   }
   
   .search-form {
