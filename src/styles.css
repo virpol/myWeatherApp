@@ -65,10 +65,20 @@ body {
 
   }
   
-  .units {
+  .weather-temperature .units {
     position: relative;
     font-size: 16px;
     top: -26px;
+  }
+
+  .weather-temperature .active {
+    color: rgb(33, 33, 33);
+    cursor: default;
+
+  }
+
+  .weather-temperature .active:hover {
+    text-decoration: none;
   }
   
   .search-form {
